@@ -92,5 +92,21 @@ namespace ApiTesting.Tests
 
             bookInfo.Reviews.Should().ContainEquivalentOf(newReview);
         }
+
+        [TestMethod]
+        public void DeleteReviewIntoBookInfo()
+        {
+            new ExpectationsCreater(_client).CreateDeleteBookInfoById1Expectation();
+            new ExpectationsCreater(_client).CreateGetListBookInfoAfterDelete();
+
+            List<BookInfo> expectedBookInfoList = new TestDataReader().GetListBookInfoAfterDelete();
+            RestRequest deleteBookInfoById = new RestRequest("/books/1", Method.Delete);
+            _client.Execute(deleteBookInfoById);
+            RestRequest getBookInfoList = new RestRequest("/books", Method.Get);
+            RestResponse response = _client.Execute(getBookInfoList);
+            List<BookInfo> actualBookInfoList = JsonConvert.DeserializeObject<List<BookInfo>>(response.Content);
+
+            actualBookInfoList.Should().BeEquivalentTo(expectedBookInfoList);
+        }
     }
 }

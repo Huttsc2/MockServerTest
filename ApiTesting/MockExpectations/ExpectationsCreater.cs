@@ -57,5 +57,17 @@ namespace ApiTesting.MockExpectations
             _client.Execute(_request);
         }
 
+        public void CreateDeleteBookInfoById1Expectation()
+        {
+            _request.AddParameter("application/json", new TestRequestReader().DeleteBookInfoById1Request(), ParameterType.RequestBody);
+            _client.Execute(_request);
+        }
+
+        public void CreateGetListBookInfoAfterDelete()
+        {
+            _request.AddParameter("application/json", new TestRequestReader().GetListBookInfoAfterDelete(), ParameterType.RequestBody);
+            _client.Execute(_request);
+        }
+
     }
 }

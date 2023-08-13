@@ -45,5 +45,17 @@
             using StreamReader r = new($"{PathToMocks}GetBookInfoById2.json");
             return r.ReadToEnd();
         }
+
+        public string DeleteBookInfoById1Request()
+        {
+            using StreamReader r = new($"{PathToMocks}SuccessfulDeleteBookInfoById1.json");
+            return r.ReadToEnd();
+        }
+
+        public string GetListBookInfoAfterDelete()
+        {
+            using StreamReader r = new($"{PathToMocks}GetListBookInfoAfterDelete.json");
+            return r.ReadToEnd();
+        }
     }
 }

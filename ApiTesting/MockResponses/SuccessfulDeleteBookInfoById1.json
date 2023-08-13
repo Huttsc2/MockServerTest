@@ -1,0 +1,10 @@
+﻿{
+  "httpRequest": {
+    "path": "/books/1",
+    "method": "Delete"
+  },
+  "httpResponse": {
+    "body": "Item deleted",
+    "statusCode": 200
+  }
+}

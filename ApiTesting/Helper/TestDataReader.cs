@@ -44,5 +44,10 @@ namespace ApiTesting.Helper
         {
             return JsonConvert.DeserializeObject<Review>(GetJson("NewReview.json"));
         }
+
+        public List<BookInfo> GetListBookInfoAfterDelete()
+        {
+            return JsonConvert.DeserializeObject<List<BookInfo>>(GetJson("ListBookInfoAfterDelete.json"));
+        }
     }
 }
