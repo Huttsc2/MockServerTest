@@ -1,0 +1,14 @@
+﻿{
+  "httpRequest": {
+    "path": "/users/1",
+    "method": "GET"
+  },
+  "httpResponse": {
+    "body": {
+      "id": 1,
+      "firstname": "John",
+      "lastname": "Doe",
+      "email": "john.doe@example.com"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+﻿{
+  "httpRequest": {
+    "path": "/books",
+    "method": "POST"
+  },
+  "httpResponse": {
+    "body": "Item created",
+    "statusCode": 200
+  }
+}

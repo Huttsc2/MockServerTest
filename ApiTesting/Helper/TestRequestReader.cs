@@ -2,10 +2,35 @@
 {
     public class TestRequestReader
     {
-        public string GetTestRequest()
+        private string PathToMocks = $"{PathFinder.GetRootDirectory()}/MockResponses/";
+
+        public string GetUsersRequest()
         {
-            string path = PathFinder.GetRootDirectory();
-            using StreamReader r = new(path + "/TestData/Put.json");
+            using StreamReader r = new($"{PathToMocks}GetUsers.json");
+            return r.ReadToEnd();
+        }
+
+        public string GetUserById1Request()
+        {
+            using StreamReader r = new($"{PathToMocks}GetUserById1.json");
+            return r.ReadToEnd();
+        }
+
+        public string GetBookInfoById1Request()
+        {
+            using StreamReader r = new($"{PathToMocks}GetBookInfoById1.json");
+            return r.ReadToEnd();
+        }
+
+        public string PostNewBookIngoRequest()
+        {
+            using StreamReader r = new($"{PathToMocks}SuccessfulPostNewBookInfo.json");
+            return r.ReadToEnd();
+        }
+
+        public string GetListBookInfoRequest()
+        {
+            using StreamReader r = new($"{PathToMocks}GetListBookInfo.json");
             return r.ReadToEnd();
         }
     }

@@ -1,0 +1,23 @@
+﻿{
+  "id": 2,
+  "title": "Guards! Guards!",
+  "author": {
+    "name": "Terry",
+    "surname": "Pratchett",
+    "dob": {
+      "day": 28,
+      "month": "april",
+      "year": 1948
+    },
+    "address": {
+      "city": "Beaconsfield",
+      "country": "United Kingdom"
+    }
+  },
+  "publishedDate": {
+    "year": 1989
+  },
+  "genres": [
+    "Fantasy"
+  ]
+}

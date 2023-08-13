@@ -1,8 +1,0 @@
-{
-    "httpRequest": {
-        "path":"/some/test/path"
-    },
-    "httpResponse": {
-        "body": "someResponse"
-    }
-}

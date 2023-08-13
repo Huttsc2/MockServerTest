@@ -1,0 +1,73 @@
+﻿{
+  "httpRequest": {
+    "path": "/books/1",
+    "method": "GET"
+  },
+  "httpResponse": {
+    "body": {
+      "id":  1,
+      "title": "Neverwhere",
+      "author": {
+        "name": "Neil",
+        "surname": "Gaiman",
+        "dob": {
+          "day": 10,
+          "month": "november",
+          "year": 1960
+        },
+        "address": {
+          "city": "Portchester",
+          "country": "United Kingdom"
+         }
+        },
+      "publishedDate": {
+        "day": 16,
+        "month": "september",
+        "year": 1996
+      },
+      "genres": [
+        "Novel",
+        "Fantasy fiction",
+        "Urban fantasy",
+        "Horror fiction"
+      ],
+      "reviews": [
+        {
+          "reviewer": {
+            "name": "Anna",
+            "surname": "Smith",
+            "registration_date": {
+              "day": 15,
+              "month": "january",
+              "year": 2018
+            }
+          },
+          "date": {
+            "day": 1,
+            "month": "june",
+            "year": 2020
+          },
+          "rating": 5,
+          "comment": "Great book!"
+        },
+        {
+          "reviewer": {
+            "name": "Peter",
+            "surname": "Davis",
+            "registration_date": {
+              "day": 23,
+              "month": "february",
+              "year": 2010
+            }
+          },
+          "date": {
+            "day": 24,
+            "month": "december",
+            "year": 2012
+          },
+          "rating": 4
+        }
+      ]
+    }
+  }
+}
