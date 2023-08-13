@@ -35,7 +35,7 @@ namespace ApiTesting.MockExpectations
 
         public void CreatePostNewBookInfoExpectation()
         {
-            _request.AddParameter("application/json", new TestRequestReader().PostNewBookIngoRequest(), ParameterType.RequestBody);
+            _request.AddParameter("application/json", new TestRequestReader().PostNewBookInfoRequest(), ParameterType.RequestBody);
             _client.Execute(_request);
         }
 
@@ -44,5 +44,18 @@ namespace ApiTesting.MockExpectations
             _request.AddParameter("application/json", new TestRequestReader().GetListBookInfoRequest(), ParameterType.RequestBody);
             _client.Execute(_request);
         }
+
+        public void CreatePutNewReviewIntoBookInfoById2Expectation()
+        {
+            _request.AddParameter("application/json", new TestRequestReader().PutBookInfoById2Request(), ParameterType.RequestBody);
+            _client.Execute(_request);
+        }
+
+        public void CreateGetBookInfoById2Expectation()
+        {
+            _request.AddParameter("application/json", new TestRequestReader().GetBookInfoById2Request(), ParameterType.RequestBody);
+            _client.Execute(_request);
+        }
+
     }
 }

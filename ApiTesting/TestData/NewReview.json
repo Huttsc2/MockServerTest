@@ -1,0 +1,18 @@
+﻿{
+  "reviewer": {
+    "name": "Jordan",
+    "surname": "Peterson",
+    "registration_date": {
+      "day": 31,
+      "month": "march",
+      "year": 2001
+    }
+  },
+  "date": {
+    "day": 12,
+    "month": "may",
+    "year": 2023
+  },
+  "rating": 1,
+  "comment": "Better clean your room!"
+}

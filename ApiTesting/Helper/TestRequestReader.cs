@@ -22,7 +22,7 @@
             return r.ReadToEnd();
         }
 
-        public string PostNewBookIngoRequest()
+        public string PostNewBookInfoRequest()
         {
             using StreamReader r = new($"{PathToMocks}SuccessfulPostNewBookInfo.json");
             return r.ReadToEnd();
@@ -31,6 +31,18 @@
         public string GetListBookInfoRequest()
         {
             using StreamReader r = new($"{PathToMocks}GetListBookInfo.json");
+            return r.ReadToEnd();
+        }
+
+        public string PutBookInfoById2Request()
+        {
+            using StreamReader r = new($"{PathToMocks}SuccessfulPutNewReviewById2.json");
+            return r.ReadToEnd();
+        }
+
+        public string GetBookInfoById2Request()
+        {
+            using StreamReader r = new($"{PathToMocks}GetBookInfoById2.json");
             return r.ReadToEnd();
         }
     }

@@ -1,0 +1,10 @@
+﻿{
+  "httpRequest": {
+    "path": "/books/2/review",
+    "method": "PUT"
+  },
+  "httpResponse": {
+    "body": "Item updated",
+    "statusCode": 200
+  }
+}

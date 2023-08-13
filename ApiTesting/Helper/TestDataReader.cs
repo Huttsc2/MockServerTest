@@ -14,25 +14,35 @@ namespace ApiTesting.Helper
             return JsonConvert.DeserializeObject<BookInfo>(json);
         }
 
+        private string GetJson(string fileName)
+        {
+            using StreamReader r = new StreamReader($"{PathToTestData}{fileName}");
+            return r.ReadToEnd();
+        }
+
         public List<User> GetUsers()
         {
-            using StreamReader r = new StreamReader($"{PathToTestData}Users.json");
-            string json = r.ReadToEnd();
-            return JsonConvert.DeserializeObject<List<User>>(json);
+            return JsonConvert.DeserializeObject<List<User>>(GetJson("Users.json"));
         }
 
         public User GetUserById1()
         {
-            using StreamReader r = new StreamReader($"{PathToTestData}UserById1.json");
-            string json = r.ReadToEnd();
-            return JsonConvert.DeserializeObject<User>(json);
+            return JsonConvert.DeserializeObject<User>(GetJson("UserById1.json"));
         }
 
         public BookInfo GetNewBook()
         {
-            using StreamReader r = new StreamReader($"{PathToTestData}NewBook.json");
-            string json = r.ReadToEnd();
-            return JsonConvert.DeserializeObject<BookInfo>(json);
+            return JsonConvert.DeserializeObject<BookInfo>(GetJson("NewBook.json"));
+        }
+
+        public BookInfo GetBookInfoById2()
+        {
+            return JsonConvert.DeserializeObject<BookInfo>(GetJson("BookInfoById2WithReview.json.json"));
+        }
+
+        public Review GetNewReview()
+        {
+            return JsonConvert.DeserializeObject<Review>(GetJson("NewReview.json"));
         }
     }
 }
