@@ -13,7 +13,8 @@ namespace ApiTesting.Tests
     {
         private RestClient _client { get; set; }
 
-        [TestInitialize] public void Init() 
+        [TestInitialize]
+        public void Init() 
         {
             _client = new RestClient("http://localhost:1080");
             var resetRequest = new RestRequest("/mockserver/reset", Method.Put);
@@ -23,25 +24,25 @@ namespace ApiTesting.Tests
         [TestMethod]
         public void GetUsers()
         {
-            new ExpectationsCreater(_client).CreateGetUsersExpectation();
+            new ExpectationsCreator(_client).CreateGetUsersExpectation();
+            List<User> expectedUserList = new TestDataReader().GetUsers();
 
-            RestRequest request = new RestRequest("/users", Method.Get);
-            RestResponse response = _client.Execute(request);
-            List<User> actualResult = JsonConvert.DeserializeObject<List<User>>(response.Content);
-            List<User> expectedResult = new TestDataReader().GetUsers();
+            RestRequest getRequest = new RestRequest("/users", Method.Get);
+            RestResponse getResponse = _client.Execute(getRequest);
+            List<User> actualUserList = JsonConvert.DeserializeObject<List<User>>(getResponse.Content);
 
-            actualResult.Should().BeEquivalentTo(expectedResult);
+            actualUserList.Should().BeEquivalentTo(expectedUserList);
         }
 
         [TestMethod]
         public void GetUserById1()
         {
-            new ExpectationsCreater(_client).CreateGetUserById1Expectation();
-
-            RestRequest request = new RestRequest("/users/1", Method.Get);
-            RestResponse response = _client.Execute(request);
-            User actualUser = JsonConvert.DeserializeObject<User>(response.Content);
+            new ExpectationsCreator(_client).CreateGetUserById1Expectation();
             User expectedUser = new TestDataReader().GetUserById1();
+
+            RestRequest getRrequest = new RestRequest("/users/1", Method.Get);
+            RestResponse getResponse = _client.Execute(getRrequest);
+            User actualUser = JsonConvert.DeserializeObject<User>(getResponse.Content);
 
             actualUser.Should().BeEquivalentTo(expectedUser);
         }
@@ -49,12 +50,12 @@ namespace ApiTesting.Tests
         [TestMethod]
         public void GetBookInfoById1()
         {
-            new ExpectationsCreater(_client).CreateGetBookInfoById1Expectation();
-
-            RestRequest request = new RestRequest("/books/1", Method.Get);
-            RestResponse response = _client.Execute(request);
-            BookInfo actualBookInfo = JsonConvert.DeserializeObject<BookInfo>(response.Content);
+            new ExpectationsCreator(_client).CreateGetBookInfoById1Expectation();
             BookInfo expectedBookInfo = new TestDataReader().GetBookInfoId1();
+
+            RestRequest getRequest = new RestRequest("/books/1", Method.Get);
+            RestResponse getResponse = _client.Execute(getRequest);
+            BookInfo actualBookInfo = JsonConvert.DeserializeObject<BookInfo>(getResponse.Content);
             
             actualBookInfo.Should().BeEquivalentTo(expectedBookInfo);
         }
@@ -62,49 +63,50 @@ namespace ApiTesting.Tests
         [TestMethod]
         public void PostNewBook()
         {
-            new ExpectationsCreater(_client).CreatePostNewBookInfoExpectation();
-            new ExpectationsCreater(_client).CreateGetListBookInfoExpectation();
+            new ExpectationsCreator(_client).CreatePostNewBookInfoExpectation();
+            new ExpectationsCreator(_client).CreateGetListBookInfoExpectation();
+            BookInfo bookInfoToPost = new TestDataReader().GetNewBook();
 
-            BookInfo newBook = new TestDataReader().GetNewBook();
             RestRequest addNewBookInfoRequest = new RestRequest("/books", Method.Post);
-            addNewBookInfoRequest.AddBody(newBook);
+            addNewBookInfoRequest.AddBody(bookInfoToPost);
             _client.Execute(addNewBookInfoRequest);
-            RestRequest getListBookInfo = new RestRequest("/books", Method.Get);
-            RestResponse response = _client.Execute(getListBookInfo);
-            List<BookInfo> bookInfoList = JsonConvert.DeserializeObject<List<BookInfo>>(response.Content);
+            RestRequest getListBookInfoRequest = new RestRequest("/books", Method.Get);
+            RestResponse getListBookInfoResponse = _client.Execute(getListBookInfoRequest);
+            List<BookInfo> actualBookInfoList = 
+                JsonConvert.DeserializeObject<List<BookInfo>>(getListBookInfoResponse.Content);
 
-            bookInfoList.Should().ContainEquivalentOf(newBook);
+            actualBookInfoList.Should().ContainEquivalentOf(bookInfoToPost);
         }
 
         [TestMethod]
         public void PutReviewIntoBookInfo()
         {
-            new ExpectationsCreater(_client).CreatePutNewReviewIntoBookInfoById2Expectation();
-            new ExpectationsCreater(_client).CreateGetBookInfoById2Expectation();
-            
-            Review newReview = new TestDataReader().GetNewReview();
-            RestRequest putReviewIntoBookInfo = new RestRequest("/books/2/review", Method.Put);
-            putReviewIntoBookInfo.AddBody(newReview);
-            _client.Execute(putReviewIntoBookInfo);
-            RestRequest getBookById2 = new RestRequest("/books/2", Method.Get);
-            RestResponse response = _client.Execute(getBookById2);
-            BookInfo bookInfo = JsonConvert.DeserializeObject<BookInfo>(response.Content);
+            new ExpectationsCreator(_client).CreatePutNewReviewIntoBookInfoById2Expectation();
+            new ExpectationsCreator(_client).CreateGetBookInfoById2Expectation();
+            Review reviewToPut = new TestDataReader().GetNewReview();
 
-            bookInfo.Reviews.Should().ContainEquivalentOf(newReview);
+            RestRequest putReviewRequest = new RestRequest("/books/2/review", Method.Put);
+            putReviewRequest.AddBody(reviewToPut);
+            _client.Execute(putReviewRequest);
+            RestRequest getBookInfoRequest = new RestRequest("/books/2", Method.Get);
+            RestResponse getBookInfoResponse = _client.Execute(getBookInfoRequest);
+            BookInfo actualBookInfo = JsonConvert.DeserializeObject<BookInfo>(getBookInfoResponse.Content);
+
+            actualBookInfo.Reviews.Should().ContainEquivalentOf(reviewToPut);
         }
 
         [TestMethod]
         public void DeleteReviewIntoBookInfo()
         {
-            new ExpectationsCreater(_client).CreateDeleteBookInfoById1Expectation();
-            new ExpectationsCreater(_client).CreateGetListBookInfoAfterDelete();
-
+            new ExpectationsCreator(_client).CreateDeleteBookInfoById1Expectation();
+            new ExpectationsCreator(_client).CreateGetListBookInfoAfterDelete();
             List<BookInfo> expectedBookInfoList = new TestDataReader().GetListBookInfoAfterDelete();
-            RestRequest deleteBookInfoById = new RestRequest("/books/1", Method.Delete);
-            _client.Execute(deleteBookInfoById);
-            RestRequest getBookInfoList = new RestRequest("/books", Method.Get);
-            RestResponse response = _client.Execute(getBookInfoList);
-            List<BookInfo> actualBookInfoList = JsonConvert.DeserializeObject<List<BookInfo>>(response.Content);
+
+            RestRequest deleteBookInfoRequest = new RestRequest("/books/1", Method.Delete);
+            _client.Execute(deleteBookInfoRequest);
+            RestRequest getBookInfoRequest = new RestRequest("/books", Method.Get);
+            RestResponse getBookInfoResponse = _client.Execute(getBookInfoRequest);
+            List<BookInfo> actualBookInfoList = JsonConvert.DeserializeObject<List<BookInfo>>(getBookInfoResponse.Content);
 
             actualBookInfoList.Should().BeEquivalentTo(expectedBookInfoList);
         }

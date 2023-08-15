@@ -20,34 +20,11 @@ namespace ApiTesting.Helper
             return r.ReadToEnd();
         }
 
-        public List<User> GetUsers()
-        {
-            return JsonConvert.DeserializeObject<List<User>>(GetJson("Users.json"));
-        }
-
-        public User GetUserById1()
-        {
-            return JsonConvert.DeserializeObject<User>(GetJson("UserById1.json"));
-        }
-
-        public BookInfo GetNewBook()
-        {
-            return JsonConvert.DeserializeObject<BookInfo>(GetJson("NewBook.json"));
-        }
-
-        public BookInfo GetBookInfoById2()
-        {
-            return JsonConvert.DeserializeObject<BookInfo>(GetJson("BookInfoById2WithReview.json.json"));
-        }
-
-        public Review GetNewReview()
-        {
-            return JsonConvert.DeserializeObject<Review>(GetJson("NewReview.json"));
-        }
-
-        public List<BookInfo> GetListBookInfoAfterDelete()
-        {
-            return JsonConvert.DeserializeObject<List<BookInfo>>(GetJson("ListBookInfoAfterDelete.json"));
-        }
+        public List<User> GetUsers() => JsonConvert.DeserializeObject<List<User>>(GetJson("Users.json"));
+        public User GetUserById1() => JsonConvert.DeserializeObject<User>(GetJson("UserById1.json"));
+        public BookInfo GetNewBook() => JsonConvert.DeserializeObject<BookInfo>(GetJson("NewBook.json"));
+        public Review GetNewReview() => JsonConvert.DeserializeObject<Review>(GetJson("NewReview.json"));
+        public List<BookInfo> GetListBookInfoAfterDelete() => 
+            JsonConvert.DeserializeObject<List<BookInfo>>(GetJson("ListBookInfoAfterDelete.json"));
     }
 }
